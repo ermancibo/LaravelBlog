@@ -1,7 +1,3 @@
-/**
- * Created by ahmetbusra on 30.09.2016.
- */
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN':csrfToken
@@ -31,17 +27,17 @@ $(function(){
     switch (durum)
     {
         case 0 :
-            toastr.error('Hata oluştu');
+            toastr.error('Error');
             break;
         case 1 :
-            toastr.success('İşlem başarılı.');
+            toastr.success('Success.');
             break;
         case 2 :
-            toastr.info('İşlem başarılı fakat yönetici onayladıktan sonra aktifleşecektir.');
+            toastr.info('The operation is successful but will be activated after the administrator approves.');
             break;
 
         case 3 :
-            toastr.warning('Zaten daha önce yazarlık talebinde bulunmuşsunuz.');
+            toastr.warning('You have already asked for authorship before.');
             break;
 
 
@@ -54,7 +50,7 @@ $(function(){
 
     $('.summernote').summernote({
         height: 300,
-        lang: 'tr-TR'
+        lang: 'en-EN'
     });
 
     $('.selectpicker').selectpicker({

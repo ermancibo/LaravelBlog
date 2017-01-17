@@ -12,9 +12,17 @@
 */
 
 
+use App\Setting;
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::group(['middleware'=>['is_admin','auth']],function(){
+    Route::group(['namespace'=>'Admin'],function(){
+       Route::get('/site-settings','SettingController@index') ;
+       Route::put('/site-settings/update','SettingController@update') ;
+    });
+});
