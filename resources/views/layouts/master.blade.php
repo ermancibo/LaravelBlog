@@ -72,7 +72,7 @@
                                 @endif
                                 @if(Auth::user()->has_auth("author"))
                                     <li><a href="{{ url('/my-articles') }}"><i class="fa fa-btn fa-list"></i>My Articles</a></li>
-                                    <li><a href="{{ url('/my-article/create') }}"><i class="fa fa-btn fa-plus"></i>New Article </a></li>
+                                    <li><a href="{{ url('/article/create') }}"><i class="fa fa-btn fa-plus"></i>New Article </a></li>
                                 @endif
                                 @if(!Auth::user()->has_auth("admin") && !Auth::user()->has_auth("author"))
                                     <li><a href="{{ url('/make-author') }}"><i class="fa fa-btn fa-envelope"></i>Make Author</a></li>
@@ -152,7 +152,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                <p class="copyright text-muted">Copyright &copy; {{ substr(url(''),7) }} 2016</p>
             </div>
         </div>
     </div>

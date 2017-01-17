@@ -58,18 +58,15 @@ $(function(){
     });
     //
     $(".durum").bootstrapSwitch();
-    //
 
     $(".durum").on('switchChange.bootstrapSwitch', function(event, state) {
         console.log(this); // DOM element
         console.log(event); // jQuery event
         console.log(state); // true | false
-
         $.ajax({
-            data: {"durum": state,"id":$(this).data("id") },
+            data: {"status": state,"id":$(this).data("id") },
             type: "POST",
             url: $(this).data("url"),
-
             success: function(url) {
                 //alert('Success');
 
@@ -78,7 +75,4 @@ $(function(){
     });
 
 
-
-
-
-})
+});

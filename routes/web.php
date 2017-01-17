@@ -26,5 +26,9 @@ Route::group(['middleware'=>['is_admin','auth']],function(){
        Route::put('/site-settings/update','SettingController@update') ;
        Route::resource('user','UserController');
        Route::resource('categories','CategoryController');
+       Route::resource("article","ArticleController");
+       Route::post("/article/chance-status","ArticleController@changeStatus");
+
     });
 });
+
