@@ -22,12 +22,20 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware'=>['is_admin','auth']],function(){
     Route::group(['namespace'=>'Admin'],function(){
-       Route::get('/site-settings','SettingController@index') ;
-       Route::put('/site-settings/update','SettingController@update') ;
-       Route::resource('user','UserController');
-       Route::resource('categories','CategoryController');
-       Route::resource("article","ArticleController");
-       Route::post("/article/chance-status","ArticleController@changeStatus");
+        Route::get('/site-settings','SettingController@index') ;
+        Route::put('/site-settings/update','SettingController@update') ;
+        Route::resource('user','UserController');
+        Route::resource('categories','CategoryController');
+        Route::resource("article","ArticleController");
+        Route::post("/article/chance-status","ArticleController@changeStatus");
+
+    });
+});
+
+Route::group(['middleware'=>['is_author','auth']],function(){
+    Route::group(['namespace'=>'Author'],function(){
+
+        Route::resource("articles","ArticleController");
 
     });
 });

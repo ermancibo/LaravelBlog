@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Author;
 
 use App\Article;
 use App\Category;
@@ -24,8 +24,8 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $articles = Article::orderBy("created_at","desc")->paginate(10);
-        return view("admin.article_index",compact('articles'));
+        $articles = Article::where("user_id",Auth::user()->id)->orderBy("created_at","desc")->paginate(10);
+        return view("author.article_index",compact('articles'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ArticleController extends Controller
         //
         $categories = Category::pluck("title","id")->all();
 
-        return view("admin.article_create",compact('categories'));
+        return view("author.article_create",compact('categories'));
     }
 
     /**
@@ -59,7 +59,7 @@ class ArticleController extends Controller
 
         $input = $request->all();
         $input["user_id"] = Auth::user()->id;
-        $input["status"] = 1;
+        $input["status"] = (Auth::user()->has_auth("admin"))?1:0;
 
         $article = Article::create($input);
 
@@ -82,7 +82,7 @@ class ArticleController extends Controller
         }
 
         Session::flash("durum",1);
-        return redirect("/article");
+        return redirect("/articles");
     }
 
     /**
@@ -108,7 +108,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $categories = Category::pluck("title","id")->all();
 
-        return view("admin.article_edit",compact('article','categories'));
+        return view("author.article_edit",compact('article','categories'));
     }
 
     /**
@@ -128,6 +128,7 @@ class ArticleController extends Controller
         ]);
 
         $input = $request->all();
+        $input["status"] = (Auth::user()->has_auth("admin"))?1:0;
         $article = Article::find($id);
         $article->update($input);
 
@@ -143,7 +144,7 @@ class ArticleController extends Controller
         }
 
         Session::flash("durum",1);
-        return redirect("/article");
+        return redirect("/articles");
     }
 
     /**
@@ -165,7 +166,7 @@ class ArticleController extends Controller
 
         Session::flash("durum",1);
 
-        return redirect("/article");
+        return redirect("/articles");
     }
 
     public function changeStatus(Request $request)

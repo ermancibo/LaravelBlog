@@ -71,8 +71,8 @@
                                     <li class="divider"></li>
                                 @endif
                                 @if(Auth::user()->has_auth("author"))
-                                    <li><a href="{{ url('/my-articles') }}"><i class="fa fa-btn fa-list"></i>My Articles</a></li>
-                                    <li><a href="{{ url('/article/create') }}"><i class="fa fa-btn fa-plus"></i>New Article </a></li>
+                                    <li><a href="{{ url('/articles') }}"><i class="fa fa-btn fa-list"></i>My Articles</a></li>
+                                    <li><a href="{{ url('/articles/create') }}"><i class="fa fa-btn fa-plus"></i>New Article </a></li>
                                 @endif
                                 @if(!Auth::user()->has_auth("admin") && !Auth::user()->has_auth("author"))
                                     <li><a href="{{ url('/make-author') }}"><i class="fa fa-btn fa-envelope"></i>Make Author</a></li>
