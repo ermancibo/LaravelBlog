@@ -24,6 +24,7 @@ Route::group(['middleware'=>['is_admin','auth']],function(){
     Route::group(['namespace'=>'Admin'],function(){
        Route::get('/site-settings','SettingController@index') ;
        Route::put('/site-settings/update','SettingController@update') ;
-       Route::resource('/user','UserController');
+       Route::resource('user','UserController');
+       Route::resource('categories','CategoryController');
     });
 });
