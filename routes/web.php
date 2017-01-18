@@ -28,6 +28,10 @@ Route::group(['middleware'=>['is_admin','auth']],function(){
         Route::resource('categories','CategoryController');
         Route::resource("article","ArticleController");
         Route::post("/article/chance-status","ArticleController@changeStatus");
+        Route::get("/requests","RequestController@index");
+        Route::post("/requests/change-status","RequestController@changeStatus");
+        Route::get("/requests/{id}","RequestController@index");
+        Route::delete("/requests/{id}","RequestController@destroy")->name("request.destroy");
 
     });
 });
@@ -39,4 +43,7 @@ Route::group(['middleware'=>['is_author','auth']],function(){
 
     });
 });
+
+Route::get('/author-request','AuthorRequestController@index');
+Route::post('/author-request/send','AuthorRequestController@sendRequest');
 

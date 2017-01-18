@@ -67,7 +67,7 @@
                                     <li><a href="{{ url('/user') }}"><i class="fa fa-btn fa-users"></i>Users</a></li>
                                     <li><a href="{{ url('/categories') }}"><i class="fa fa-btn fa-cube"></i>Categories</a></li>
                                     <li><a href="{{ url('/article') }}"><i class="fa fa-btn fa-list-ol"></i>All Articles</a></li>
-                                    <li><a href="{{ url('/author-requests') }}"><i class="fa fa-btn fa-envelope-o"></i>Author Requests</a></li>
+                                    <li><a href="{{ url('/requests') }}"><i class="fa fa-btn fa-envelope-o"></i>Author Requests</a></li>
                                     <li class="divider"></li>
                                 @endif
                                 @if(Auth::user()->has_auth("author"))
@@ -75,7 +75,7 @@
                                     <li><a href="{{ url('/articles/create') }}"><i class="fa fa-btn fa-plus"></i>New Article </a></li>
                                 @endif
                                 @if(!Auth::user()->has_auth("admin") && !Auth::user()->has_auth("author"))
-                                    <li><a href="{{ url('/make-author') }}"><i class="fa fa-btn fa-envelope"></i>Make Author</a></li>
+                                    <li><a href="{{ url('/author-request') }}"><i class="fa fa-btn fa-envelope"></i>Make Author</a></li>
                                 @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
