@@ -50,3 +50,4 @@ Route::post('/author-request/send','AuthorRequestController@sendRequest');
 
 Route::get('/posts/{slug}','ArticleController@index');
 Route::get('/category/{slug}','CategoryController@index');
+Route::get('/export-pdf/',array('as'=>'htmltopdf','uses'=>'PDFController@index'));
