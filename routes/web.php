@@ -45,5 +45,8 @@ Route::group(['middleware'=>['is_author','auth']],function(){
 });
 
 Route::get('/author-request','AuthorRequestController@index');
+
 Route::post('/author-request/send','AuthorRequestController@sendRequest');
 
+Route::get('/posts/{slug}','ArticleController@index');
+Route::get('/category/{slug}','CategoryController@index');
