@@ -39,6 +39,9 @@ $(function(){
         case 3 :
             toastr.warning('You have already asked for authorship before.');
             break;
+        case 4 :
+            toastr.warning('Category not deleted! because the category has articles.');
+            break;
 
 
 

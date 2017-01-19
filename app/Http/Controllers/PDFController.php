@@ -19,8 +19,8 @@ class PDFController extends Controller
                 $pdf->setPaper('a4', 'portrait');
                 return $pdf->download($articles->title.'.pdf');
             }
-            //return null;
+            return null;
         }
-        //return null;
+        return null;
     }
 }

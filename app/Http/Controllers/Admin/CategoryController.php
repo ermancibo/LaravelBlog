@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Img;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 
@@ -139,18 +140,25 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+
         $category_image = Category::find($id)->image->name;
+        $article_control = DB::table('articles')->where('category_id',$id)->first();
+        if(empty($article_control) ){
+            @unlink(public_path("uploads/" . $category_image));
+            @unlink(public_path("uploads/thumb_" . $category_image));
 
-        @unlink(public_path("uploads/".$category_image));
-        @unlink(public_path("uploads/thumb_".$category_image));
+            Img::where("imageable_id", $id)->where("imageable_type", "App\Category")->delete();
 
-        Img::where("imageable_id",$id)->where("imageable_type","App\Category")->delete();
+            Category::destroy($id);
 
-        Category::destroy($id);
+            Session::flash("durum", 1);
 
-        Session::flash("durum",1);
-
-        return redirect("/categories");
+            return redirect("/categories");
+        }
+        else{
+            Session::flash("durum", 4);
+            return redirect("/categories");
+        }
 
     }
 }
